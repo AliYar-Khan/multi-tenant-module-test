@@ -1,6 +1,4 @@
-import express, {Request, Response} from 'express';
-import mongoose from 'mongoose';
-import { ModuleManager } from './modules';
+import express from 'express';
 import * as securityMiddleware from './middleware/security';
 import tenantRoutes from './routes/tenantRoutes';
 import authRoutes from './routes/authRoutes';

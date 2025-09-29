@@ -22,8 +22,6 @@ The Mini SaaS Module is designed to manage multiple tenants within a single appl
 The project is structured as follows:
 
 - **src/app.ts**: Entry point of the application, initializes the server and sets up middleware.
-- **src/tenants/index.ts**: Contains the `TenantManager` class for tenant management.
-- **src/modules/index.ts**: Contains the `ModuleManager` class for managing application modules.
 - **src/middleware/security.ts**: Implements security middleware functions.
 - **src/utils/index.ts**: Provides utility functions for common tasks.
 - **src/types/index.ts**: Defines TypeScript interfaces for type safety.

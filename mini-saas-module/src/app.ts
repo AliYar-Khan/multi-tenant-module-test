@@ -4,7 +4,7 @@ import { ModuleManager } from './modules';
 import * as securityMiddleware from './middleware/security';
 import tenantRoutes from './routes/tenantRoutes';
 
-const app = express();
+export const app = express();
 const port: number = parseInt(process.env.PORT || '3000', 10);
 
 // Middleware setup
@@ -23,7 +23,11 @@ app.use((req, _res, next) => {
 // Tenant routes (MongoDB-backed)
 app.use('/tenants', tenantRoutes);
 
-// Start the server
-app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
-});
+// Start the server only if not in test environment
+if (process.env.NODE_ENV !== 'test') {
+    app.listen(port, () => {
+        console.log(`Server is running on http://localhost:${port}`);
+    });
+}
+
+export default app;

@@ -3,7 +3,7 @@
 ## Phase 1: Backend
 
 - [x] Set up Express server with Zod validation
-- [ ] Implement tenant model and subdomain routing
+- [x] Implement tenant model and subdomain routing
 - [ ] Implement user authentication (signup/login, JWT)
 - [ ] Enforce tenant data isolation
 - [ ] Add audit logging for auth/events

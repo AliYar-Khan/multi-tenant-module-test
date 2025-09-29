@@ -1,0 +1,29 @@
+import express, {Request, Response} from 'express';
+import mongoose from 'mongoose';
+import { ModuleManager } from './modules';
+import * as securityMiddleware from './middleware/security';
+import tenantRoutes from './routes/tenantRoutes';
+
+const app = express();
+const port: number = parseInt(process.env.PORT || '3000', 10);
+
+// Middleware setup
+app.use(express.json());
+app.use(securityMiddleware.validateApiKey);
+app.use(securityMiddleware.enforceTenantIsolation);
+
+// Subdomain extraction middleware
+app.use((req, _res, next) => {
+    const host = req.headers.host || '';
+    const subdomain = host.split('.')[0];
+    (req as any).subdomain = subdomain;
+    next();
+});
+
+// Tenant routes (MongoDB-backed)
+app.use('/tenants', tenantRoutes);
+
+// Start the server
+app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
+});

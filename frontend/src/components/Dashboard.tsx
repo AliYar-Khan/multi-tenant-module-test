@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 interface Metrics {
   callsToday: number;
@@ -43,12 +44,11 @@ export default function Dashboard({ token }: { token: string }) {
       {role === 'admin' ? (
         <div>
           <h3>Admin Panel</h3>
-          {/* Admin-only features here */}
+          <Link to="/branding-form">Update/Create Branding</Link>
         </div>
       ) : (
         <div>
           <h3>User Panel</h3>
-          {/* User-only features here */}
         </div>
       )}
     </div>

@@ -14,8 +14,8 @@
 
 - [X] Initialize React app with Vite
 - [x] Implement login/signup forms
-- [ ] Dashboard: role-based views, metrics display
-- [ ] Branding config for tenant owners
+- [x] Dashboard: role-based views, metrics display
+- [x] Branding config for tenant owners
 
 ## Phase 3: Testing & Quality
 

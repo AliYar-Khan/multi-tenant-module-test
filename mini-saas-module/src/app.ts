@@ -4,6 +4,7 @@ import tenantRoutes from './routes/tenantRoutes';
 import authRoutes from './routes/authRoutes';
 import ultravoxRoutes from './routes/ultravoxRoutes';
 import metricsRoutes from './routes/metricsRoutes';
+import brandingRoutes from './routes/brandingRoutes';
 
 export const app = express();
 const port: number = parseInt(process.env.PORT || '3000', 10);
@@ -27,6 +28,8 @@ app.use('/auth', authRoutes);
 app.use('/ultravox', ultravoxRoutes);
 // Metrics routes
 app.use('/metrics', metricsRoutes);
+// Branding routes
+app.use('/branding', brandingRoutes);
 // Tenant routes (MongoDB-backed)
 app.use('/tenants', tenantRoutes);
 

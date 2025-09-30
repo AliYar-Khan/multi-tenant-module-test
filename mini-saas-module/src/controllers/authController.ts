@@ -1,4 +1,4 @@
-import User from '../models/user';
+import User, { IUser } from '../models/user';
 import { Request, Response } from 'express';
 import { signupSchema, loginSchema } from '../validation/user';
 import { ZodError } from 'zod';
@@ -42,7 +42,7 @@ export const signup = async (req: Request, res: Response) => {
 export const login = async (req: Request, res: Response) => {
   try {
     const validated = loginSchema.parse(req.body);
-    const user = await User.findOne({ email: validated.email, tenantId: validated.tenantId });
+    const user:IUser | null = await User.findOne({ email: validated.email, tenantId: validated.tenantId });
     if (!user) {
       return res.status(401).json({ error: 'Invalid credentials' });
     }

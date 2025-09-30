@@ -16,4 +16,4 @@ const CallMetricSchema: Schema = new Schema({
   createdAt: { type: Date, default: Date.now }
 });
 
-export default mongoose.model<ICallMetric>('CallMetric', CallMetricSchema);
+export default mongoose.model('CallMetric', CallMetricSchema);

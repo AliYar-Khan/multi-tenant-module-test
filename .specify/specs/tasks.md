@@ -8,12 +8,12 @@
 - [x] Enforce tenant data isolation
 - [x] Add audit logging for auth/events
 - [x] Integrate Ultravox API (mock/test call)
-- [ ] Implement metrics endpoints
+- [x] Implement metrics endpoints
 
 ## Phase 2: Frontend
 
-- [ ] Initialize React app with Vite
-- [ ] Implement login/signup forms
+- [X] Initialize React app with Vite
+- [x] Implement login/signup forms
 - [ ] Dashboard: role-based views, metrics display
 - [ ] Branding config for tenant owners
 

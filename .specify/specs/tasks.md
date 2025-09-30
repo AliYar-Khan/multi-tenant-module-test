@@ -5,7 +5,7 @@
 - [x] Set up Express server with Zod validation
 - [x] Implement tenant model and subdomain routing
 - [x] Implement user authentication (signup/login, JWT)
-- [ ] Enforce tenant data isolation
+- [x] Enforce tenant data isolation
 - [ ] Add audit logging for auth/events
 - [ ] Integrate Ultravox API (mock/test call)
 - [ ] Implement metrics endpoints

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function LoginForm({ onLogin }: { onLogin: (token: string) => void }) {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -19,7 +21,7 @@ export default function LoginForm({ onLogin }: { onLogin: (token: string) => voi
     setError('');
     const tenantSubdomain = getTenantSubdomain();
     try {
-      const res = await fetch('/auth/login', {
+      const res = await fetch('http://localhost:3000/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password, tenantSubdomain }),
@@ -36,12 +38,26 @@ export default function LoginForm({ onLogin }: { onLogin: (token: string) => voi
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Login</h2>
-      <input placeholder="Email" type="email" value={email} onChange={e => setEmail(e.target.value)} required />
-      <input placeholder="Password" type="password" value={password} onChange={e => setPassword(e.target.value)} required />
-      <button type="submit">Login</button>
-      {error && <div style={{color: 'red'}}>{error}</div>}
-    </form>
+    <div style={{
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      minHeight: '100vh',
+      width: '100vw',
+      position: 'fixed',
+      top: 0,
+      left: 0,
+    }}>
+      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', minWidth: 500, minHeight: 300, padding: 20, border: '1px solid #ccc', borderRadius: 8 }}>
+        <h2>Login</h2>
+        <input placeholder="Email" type="email" value={email} onChange={e => setEmail(e.target.value)} required />
+        <input placeholder="Password" type="password" value={password} onChange={e => setPassword(e.target.value)} required />
+        <button type="submit">Login</button>
+        {error && <div style={{ color: 'red' }}>{error}</div>}
+        <button type="button" style={{ marginTop: 10 }} onClick={() => navigate('/signup')}>
+          Don't have an account? Sign up
+        </button>
+      </form>
+    </div>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface Branding {
   logoUrl?: string;
@@ -10,7 +10,7 @@ export default function BrandingBar() {
   const [branding, setBranding] = useState<Branding>({});
 
   useEffect(() => {
-    fetch('/branding')
+    fetch('http://localhost:3000/branding')
       .then(async res => {
         if (!res.ok) throw new Error('No branding');
         return res.json();
@@ -26,7 +26,7 @@ export default function BrandingBar() {
   }, []);
 
   return (
-    <div style={{ background: branding.color || '#333', color: '#fff', padding: '1rem', display: 'flex', alignItems: 'center' }}>
+    <div style={{ background: branding.color || '#333', color: '#fff', padding: '1rem', display: 'flex', position: 'fixed', width: '100%', top: 0, alignItems: 'center' }}>
       {branding.logoUrl ? (
         <img src={branding.logoUrl} alt="logo" style={{ height: 32, marginRight: 16 }} />
       ) : (

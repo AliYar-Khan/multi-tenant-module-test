@@ -13,7 +13,7 @@ export default function Dashboard({ token }: { token: string }) {
 
   useEffect(() => {
     // Fetch user role
-    fetch('/auth/me', {
+    fetch('http://localhost:3000/auth/me', {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(res => res.json())
@@ -21,7 +21,7 @@ export default function Dashboard({ token }: { token: string }) {
       .catch(() => setError('Failed to fetch role'));
 
     // Fetch metrics
-    fetch('/metrics', {
+    fetch('http://localhost:3000/metrics', {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(res => res.json())

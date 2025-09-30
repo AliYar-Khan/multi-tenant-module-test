@@ -1,29 +1,27 @@
-import { useState } from 'react';
+import  { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
+import Dashboard from './components/Dashboard';
 
 function App() {
   const [token, setToken] = useState<string | null>(null);
-  const [showSignup, setShowSignup] = useState(false);
-
-  if (token) {
-    return <div>Logged in! JWT: {token}</div>;
-  }
 
   return (
-    <div>
-      {showSignup ? (
-        <>
-          <SignupForm onSignup={setToken} />
-          <button onClick={() => setShowSignup(false)}>Already have an account? Login</button>
-        </>
-      ) : (
-        <>
-          <LoginForm onLogin={setToken} />
-          <button onClick={() => setShowSignup(true)}>No account? Sign Up</button>
-        </>
-      )}
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/login" element={<LoginForm onLogin={setToken} />} />
+        <Route path="/signup" element={<SignupForm onSignup={setToken} />} />
+        <Route
+          path="/dashboard"
+          element={token ? <Dashboard token={token} /> : <Navigate to="/login" replace />}
+        />
+        <Route
+          path="*"
+          element={<Navigate to={token ? "/dashboard" : "/login"} replace />}
+        />
+      </Routes>
+    </Router>
   );
 }
 

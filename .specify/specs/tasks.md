@@ -6,8 +6,8 @@
 - [x] Implement tenant model and subdomain routing
 - [x] Implement user authentication (signup/login, JWT)
 - [x] Enforce tenant data isolation
-- [ ] Add audit logging for auth/events
-- [ ] Integrate Ultravox API (mock/test call)
+- [x] Add audit logging for auth/events
+- [x] Integrate Ultravox API (mock/test call)
 - [ ] Implement metrics endpoints
 
 ## Phase 2: Frontend

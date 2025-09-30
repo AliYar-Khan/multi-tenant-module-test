@@ -2,6 +2,7 @@ import express from 'express';
 import * as securityMiddleware from './middleware/security';
 import tenantRoutes from './routes/tenantRoutes';
 import authRoutes from './routes/authRoutes';
+import ultravoxRoutes from './routes/ultravoxRoutes';
 
 export const app = express();
 const port: number = parseInt(process.env.PORT || '3000', 10);
@@ -21,6 +22,8 @@ app.use((req, _res, next) => {
 
 // Auth routes
 app.use('/auth', authRoutes);
+// Ultravox routes
+app.use('/ultravox', ultravoxRoutes);
 // Tenant routes (MongoDB-backed)
 app.use('/tenants', tenantRoutes);
 

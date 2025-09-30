@@ -4,6 +4,7 @@ import { signupSchema, loginSchema } from '../validation/user';
 import { ZodError } from 'zod';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import AuditLog from '../models/auditLog';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'changeme';
 
@@ -22,6 +23,13 @@ export const signup = async (req: Request, res: Response) => {
       role: validated.role || 'user',
     });
     await user.save();
+    // Audit log for signup
+    await AuditLog.create({
+      tenantId: user.tenantId,
+      userId: user._id,
+      event: 'signup',
+      timestamp: new Date()
+    });
     res.status(201).json({ message: 'User created' });
   } catch (err) {
     if (err instanceof ZodError) {
@@ -43,6 +51,13 @@ export const login = async (req: Request, res: Response) => {
       return res.status(401).json({ error: 'Invalid credentials' });
     }
     const token = jwt.sign({ userId: user._id, tenantId: user.tenantId, role: user.role }, JWT_SECRET, { expiresIn: '1h' });
+    // Audit log for login
+    await AuditLog.create({
+      tenantId: user.tenantId,
+      userId: user._id,
+      event: 'login',
+      timestamp: new Date()
+    });
     res.json({ token });
   } catch (err) {
     if (err instanceof ZodError) {
